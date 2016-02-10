@@ -19,7 +19,24 @@ Dashvend is a network-driven python script which:
 
     network traffic -> dashd -> dash_p2p.py -> vend.py -> dash_ix.py -> vend.py -> screen/relay
 
-All signature validation of locks is performed by dashd.
+There are two message types involved in confirming an InstantX transaction:
+ - The initial InstantX transaction - A standard-format transaction with a message type 'ix' instead of 'tx'
+ - The masternode consensus locks - Dash-specific messages of type 'txlvote'
+
+During initialization, vend.py:
+ - configures dash_p2p.py to forward these message types (and 'tx's) to dash_ix.py
+ - configures dash_ix.py with the current payment address to monitor
+
+Messages forwarded to dash_ix.py:
+ - are checked against the current payment address
+ - are stored in a temporary mempool
+ - are counted until a configurable threshold of locks is met
+
+Once the lock count is met, dash_ix.py:
+ - calls vend.py trigger_sale()
+ - flushes the mempool entry
+
+All signature validation of locks is performed by dashd. Only valid locks are forwarded to dash_p2p.py.
 
 # component overview
 ## dashvend
