@@ -1,0 +1,36 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          dashvend
+# Required-Start:
+# Required-Stop:
+# Default-Start:     5
+# Default-Stop:      0
+# Short-Description: Start/stop dashvend daemons
+# Description:
+### END INIT INFO
+
+PATH=/home/pi/.dash:/sbin:/usr/sbin:/bin:/usr/bin
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+    su - pi -c "/home/pi/dashvend/bin/_dashvend_control.sh start"
+    exit 0
+    ;;
+  restart|reload|force-reload)
+    su - pi -c "/home/pi/dashvend/bin/_dashvend_control.sh restart"
+    exit 0
+    ;;
+  stop)
+    su - pi -c "/home/pi/dashvend/bin/_dashvend_control.sh stop"
+    exit 0
+    ;;
+  status)
+    exit 0
+    ;;
+  *)
+    echo "Usage: $0 start|stop" >&2
+    exit 3
+    ;;
+esac

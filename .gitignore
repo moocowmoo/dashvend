@@ -1,0 +1,12 @@
+.ropeproject
+*.pyc
+state
+repos
+bin/bitcoin
+bin/bitcoinrpc
+bin/pycoin
+bin/show_image
+bin/show_image.c
+bin/trigger_relay
+bin/trigger_relay.c
+dashvend.log
