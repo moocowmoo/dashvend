@@ -4,9 +4,20 @@
 ON=0
 OFF=1
 
+# RPI2 pinouts
+PINOUT_LIGHT=5
+PINOUT_RELEASE=6
+
+# ODROID pinouts
+if [ $(grep ODROID /proc/cpuinfo | wc -l ) -gt 0 ];then
+    PINOUT_LIGHT=173
+    PINOUT_RELEASE=171
+fi
+
+
 DEV=/sys/class/gpio
-RELAY=$DEV/gpio6
-LIGHT=$DEV/gpio5
+LIGHT=$DEV/gpio${PINOUT_LIGHT}
+RELAY=$DEV/gpio${PINOUT_RELEASE}
 
 function flash_light(){
     echo $ON  > $LIGHT/value ; sleep .5 ;
@@ -14,8 +25,8 @@ function flash_light(){
 };
 
 # initialize gpio directories
-if [ ! -e $DEV/gpio5 ] ; then echo 5 > $DEV/export ; fi
-if [ ! -e $DEV/gpio6 ] ; then echo 6 > $DEV/export ; fi
+if [ ! -e $DEV/gpio${PINOUT_LIGHT} ] ; then echo ${PINOUT_LIGHT} > $DEV/export ; fi
+if [ ! -e $DEV/gpio${PINOUT_RELEASE} ] ; then echo ${PINOUT_RELEASE} > $DEV/export ; fi
 
 # initialize pin outputs
 echo out > $RELAY/direction
