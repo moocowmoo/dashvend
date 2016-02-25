@@ -13,7 +13,7 @@ repos:
 	ln -f -s ../repos/python-bitcoinrpc/bitcoinrpc ../bin/bitcoinrpc; \
 	ln -f -s ../repos/pycoin/pycoin ../bin/pycoin; \
 	ln -f -s ../repos/python-bitcoinlib/bitcoin ../bin/bitcoin; \
-    cd pycoin; sudo python setup.py install
+	cd pycoin; sudo python setup.py install
 
 dashd:
 	bin/_install_dashd.sh
