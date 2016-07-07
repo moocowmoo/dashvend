@@ -12,10 +12,10 @@ mkdir -p ~/.dash/testnet/testnet3
 cp -f bin/.dash.conf.template ~/.dash
 cd ~/.dash
 touch dashd.pid testnet/testnet3/dashd.pid
-if [ ! -e dash-0.12.0.56-${DOWNLOAD_TYPE}.tar.gz ]; then
-    wget https://www.dash.org/binaries/dash-0.12.0.56-${DOWNLOAD_TYPE}.tar.gz
+if [ ! -e dash-0.12.0.58-${DOWNLOAD_TYPE}.tar.gz ]; then
+    wget https://www.dash.org/binaries/dash-0.12.0.58-${DOWNLOAD_TYPE}.tar.gz
 fi
-tar zxvf dash-0.12.0.56-${DOWNLOAD_TYPE}.tar.gz
+tar zxvf dash-0.12.0.58-${DOWNLOAD_TYPE}.tar.gz
 ln -s dash-0.12.0/bin/dash-cli .
 ln -s dash-0.12.0/bin/dashd .
 export PATH=~/.dash:$PATH
