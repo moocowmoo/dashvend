@@ -91,6 +91,7 @@ raspberry pi 2 image shown below.
 Once you have a base image, run the following to install all the dashvend dependencies:
 
     git clone https://github.com/moocowmoo/dashvend.git
+    cd dashvend
     make
     # after entering your sudo password, allow several hours/overnight for
     # dashd to finish bootstrapping the blockchain
