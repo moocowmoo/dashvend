@@ -9,7 +9,13 @@ case "$1" in
   start)
     echo "starting"
     # rm $DASHDIR/{budget,fee_estimates,mncache,mnpayments,peers}.dat 2>/dev/null
-    /usr/bin/screen -dmS dashvend_screens -c $VENDDIR/bin/dashvend_screens.screenrc
+    # launch testnet OR mainnet dashd depending on config.py
+    MAINNET=$(grep -w MAINNET $VENDDIR/bin/dashvend/config.py | grep -i True | wc -l)
+    SCREENRC=$VENDDIR/bin/dashvend_screens-testnet.screenrc
+    if [ $MAINNET -gt 0 ]; then
+        SCREENRC=$VENDDIR/bin/dashvend_screens-mainnet.screenrc
+    fi;
+    /usr/bin/screen -dmS dashvend_screens -c $SCREENRC
     exit 0
     ;;
   restart|reload|force-reload)
