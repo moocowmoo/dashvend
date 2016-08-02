@@ -3,7 +3,7 @@
 # Provides:          dashvend
 # Required-Start:
 # Required-Stop:
-# Default-Start:     5
+# Default-Start:     2 3 5
 # Default-Stop:      0
 # Short-Description: Start/stop dashvend daemons
 # Description:

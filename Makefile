@@ -31,6 +31,7 @@ setuids:
 
 init:
 	sudo cp bin/.init.d.dashvend /etc/init.d/dashvend
+	sudo update-rc.d dashvend remove
 	sudo update-rc.d dashvend defaults
 	sudo update-rc.d dashvend enable
 	@# TODO bip generation
